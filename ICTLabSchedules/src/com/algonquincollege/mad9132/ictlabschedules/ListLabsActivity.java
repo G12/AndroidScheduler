@@ -1,5 +1,6 @@
 package com.algonquincollege.mad9132.ictlabschedules;
 
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,14 @@ public class ListLabsActivity extends ListActivity implements Constants {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_labs);
 
-		//TODO: List adapter
+		labsAdapter = new ArrayAdapter<Lab>( this, R.layout.lab_view );
+		setListAdapter( labsAdapter );
+		
+		ListView listView = getListView();
+		listView.setChoiceMode( ListView.CHOICE_MODE_SINGLE );
+		
+		// Calling async task to get JSON
+		new FetchLabs().execute( URL );
 	}
 
 	@Override
@@ -118,7 +126,7 @@ public class ListLabsActivity extends ListActivity implements Constants {
 						String description = jsonLab.getString( TAG_DESCRIPTION );
 
 						// add this lab to the list of labs
-						//TODO: labs.add( new Lab(room, description) );
+						labs.add( new Lab(room, description) );
 					}
 					return labs;
 				} catch ( JSONException e ) {
@@ -137,7 +145,26 @@ public class ListLabsActivity extends ListActivity implements Constants {
 			// Dismiss the progress dialog
 			if ( pDialog.isShowing() )
 				pDialog.dismiss();
-			//TODO: labsAdapter.addAll( result );
+
+			labsAdapter.addAll( result );			
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
