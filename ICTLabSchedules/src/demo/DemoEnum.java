@@ -1,4 +1,7 @@
-package com.algonquincollege.mad9132.ictlabschedules;
+package demo;
+
+import com.algonquincollege.mad9132.ictlabschedules.DOW;
+import com.algonquincollege.mad9132.ictlabschedules.Periods;
 
 public class DemoEnum {
 

@@ -98,12 +98,13 @@ public class ScheduleActivity extends Activity implements Constants {
 					JSONObject jsonObj = new JSONObject( jsonStr );
 
 					JSONObject jsonLab = jsonObj.getJSONObject( params[1] );
-                    JSONObject periodRow = jsonLab.getJSONObject( Periods.H0800.name() );
-                    System.out.println( "periodRow: " + periodRow.toString() );
-                    String scheduledClass = periodRow.getString( DOW.friday.name() );
-                    System.out.println( "Friday at 0800: " + scheduledClass );
-                    TextView cell = (TextView) findViewById( R.id.H0800friday );
-                    cell.setText( scheduledClass );
+                    for ( Periods period : Periods.values() ) {
+                        JSONObject periodRow = jsonLab.getJSONObject( period.name() );
+                        for ( DOW dow : DOW.values() ) {
+                            String scheduledClass = periodRow.getString( dow.name() );
+                            theSchedule.atPut( period, dow, scheduledClass );
+                        }
+                    }
 				} catch ( JSONException e ) {
 					e.printStackTrace();
 				}
@@ -121,9 +122,14 @@ public class ScheduleActivity extends Activity implements Constants {
 			if ( pDialog.isShowing() )
 				pDialog.dismiss();
 
-			//TODO: cell
+            TextView cell = (TextView) findViewById( R.id.H0800friday );
+            cell.setText( theSchedule.getScheduledClassAt(Periods.H0800, DOW.friday) );
+
+            int id;
+
+            id = getResources().getIdentifier( Periods.H0800.name() + DOW.friday.name(), "id", getBaseContext().getPackageName() );
+            cell = (TextView) findViewById( id );
+            cell.setText( theSchedule.getScheduledClassAt(Periods.H0800, DOW.friday) );
 		}
-
 	}
-
 }
