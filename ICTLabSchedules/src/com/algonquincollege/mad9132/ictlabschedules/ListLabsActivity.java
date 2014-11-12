@@ -143,10 +143,8 @@ public class ListLabsActivity extends ListActivity implements Constants {
 		protected void onPostExecute( List<Lab> result ) {
 			super.onPostExecute( result );
 			// Dismiss the progress dialog
-			if ( pDialog.isShowing() )
-				pDialog.dismiss();
-
-			labsAdapter.addAll( result );			
+			if(pDialog.isShowing())pDialog.dismiss();
+			labsAdapter.addAll( result );
 		}
 	}
 }
