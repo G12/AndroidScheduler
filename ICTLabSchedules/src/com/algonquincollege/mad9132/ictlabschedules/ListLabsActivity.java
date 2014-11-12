@@ -1,6 +1,5 @@
 package com.algonquincollege.mad9132.ictlabschedules;
 
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import util.ServiceHandler;
 import domain.Lab;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
@@ -56,7 +55,18 @@ public class ListLabsActivity extends ListActivity implements Constants {
 		
 		ListView listView = getListView();
 		listView.setChoiceMode( ListView.CHOICE_MODE_SINGLE );
-		
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				String selectedLab = ((TextView) view).getText().toString();
+			    Intent intent = new Intent( getApplicationContext(), ScheduleActivity.class );
+			    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			    intent.putExtra( THE_LAB, selectedLab );
+			    startActivity( intent );
+			}
+		});
+
 		// Calling async task to get JSON
 		new FetchLabs().execute( URL );
 	}
@@ -148,21 +158,3 @@ public class ListLabsActivity extends ListActivity implements Constants {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
