@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/lab_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:height="50dp"
+            android:minHeight="50dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="8dp"
+            android:text="@+id/lab_name_text"
+            android:textSize="15sp" >
+
+    </TextView>
+
+        <TextView
+            android:id="@+id/lab_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+             android:height="50dp"
+            android:minHeight="50dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="@+id/lab_desc_text"
+            android:textSize="13sp" >
+
+    </TextView>
+</LinearLayout>

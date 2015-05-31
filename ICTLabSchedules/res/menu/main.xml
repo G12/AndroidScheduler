@@ -7,6 +7,10 @@
         android:icon="@android:drawable/ic_dialog_info"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="@string/action_author"/>
-
+        android:title="@string/action_author">
+        <menu>
+            <item android:id="@+id/item1" android:title="@string/action_author"/>
+        </menu>
+    </item>
+    
 </menu>

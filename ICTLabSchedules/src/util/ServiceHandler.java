@@ -1,3 +1,10 @@
+/**
+ * Contains a method for making an HTTP POST to the supplied URL
+ * 
+ * @author
+ * 
+ */
+
 package util;
 
 import java.io.IOException;
